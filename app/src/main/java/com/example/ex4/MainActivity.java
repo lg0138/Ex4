@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity
     TextView officialLanguageTextView;
     TextView anthemNameTextView;
 
-    final static int Continent = 0;
     final static int ASIA = 1;
     final static int EUROPE = 2;
     final static int AFRICA = 3;
@@ -34,7 +33,6 @@ public class MainActivity extends AppCompatActivity
             new String[] {"Brazil", "Canada", "El Salvador", "Haiti", "Mexico", "Panama", "United States"}
     };
 
-    String[] [] ArrContinent = {};
 
     String[][] asiaCountries = {
             {"New Delhi", "1.353 billion", "Hindi", "Jana Ghana Mana"}, // india
@@ -107,8 +105,8 @@ public class MainActivity extends AppCompatActivity
                 this, R.layout.support_simple_spinner_dropdown_item,
                 continents);
         continentSpinner.setAdapter(continentAdapter);
-
         continentSpinner.setOnItemSelectedListener(this);
+
     }
 
     @Override
@@ -119,6 +117,12 @@ public class MainActivity extends AppCompatActivity
                 countries[position]);
         countryListView.setAdapter(adp);
         selectedContinentIndex = position;
+        if(position == 0) {
+            capitalTextView.setText("");
+            populationSizeTextView.setText("");
+            officialLanguageTextView.setText("");
+            anthemNameTextView.setText("");
+        }
     }
 
     @Override
@@ -131,9 +135,6 @@ public class MainActivity extends AppCompatActivity
         String[][] contintentCountries;
 
         switch(selectedContinentIndex) {
-            case Continent:
-                contintentCountries = ArrContinent;
-                break;
             case ASIA:
                 contintentCountries = asiaCountries;
                 break;
